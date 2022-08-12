@@ -110,7 +110,7 @@ class AWACImpl(SACImpl):
         # compute exponential weight
         weights = self._compute_weights(batch.observations, batch.actions)
 
-        return -(log_probs * weights).sum()
+        return -(log_probs * weights.detach()).sum()
 
     def _compute_weights(
         self, obs_t: torch.Tensor, act_t: torch.Tensor
